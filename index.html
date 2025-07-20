@@ -15,6 +15,50 @@
   <main>
     <section>
       <h2>Explore Notes & Question Papers</h2>
+      <div class="filters" style="text-align: center; padding: 20px;">
+  <label for="scheme">Scheme:</label>
+  <select id="scheme">
+    <option value="2019">2019</option>
+    <option value="2024">2024</option>
+  </select>
+
+  <label for="department">Department:</label>
+  <select id="department">
+    <option value="CSE">CSE</option>
+    <option value="ECE">ECE</option>
+    <option value="EEE">EEE</option>
+    <option value="MECH">MECH</option>
+    <option value="CIVIL">CIVIL</option>
+    <option value="IT">IT</option>
+  </select>
+
+  <label for="semester">Semester:</label>
+  <select id="semester">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+  </select>
+
+  <button onclick="openDrive()">Open Notes</button>
+</div>
+
+<script>
+  function openDrive() {
+    const scheme = document.getElementById("scheme").value;
+    const dept = document.getElementById("department").value;
+    const sem = document.getElementById("semester").value;
+
+    // You can replace this logic with dynamic Google Drive folder links
+    const link = `https://drive.google.com/drive/folders/YOUR_FOLDER_ID_HERE/${scheme}/${dept}/sem${sem}`;
+    window.open(link, "_blank");
+  }
+</script>
+
       <p>Select a scheme, department, and semester to get started.</p>
     </section>
     <section id="contribute">

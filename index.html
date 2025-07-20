@@ -1,82 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Sahayi</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sahayi - KTU Notes</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
       margin: 0;
-      padding: 0;
+      background-color: #f2f2f2;
     }
-
     header {
       background-color: #222;
-      color: #fff;
+      color: white;
+      text-align: center;
       padding: 30px;
+    }
+    nav {
+      background-color: #444;
+      padding: 10px;
       text-align: center;
     }
-
-    .search-bar {
-      width: 80%;
-      margin: 20px auto;
-      display: block;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 5px;
-      border: none;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 800px;
-      margin: auto;
-    }
-
-    .section {
-      background-color: white;
-      padding: 20px;
-      margin-top: 20px;
-      border-radius: 10px;
-    }
-
-    .section h2 {
-      margin-bottom: 10px;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 15px;
-    }
-
-    label {
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
       font-weight: bold;
     }
-
-    select, button {
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 14px;
+    .container {
+      padding: 20px;
     }
-
+    .section {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+    }
+    select, input, textarea, button {
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
     button {
-      background-color: #333;
+      background-color: #222;
       color: white;
       cursor: pointer;
+      margin-top: 15px;
     }
-
     button:hover {
-      background-color: #444;
+      background-color: #555;
     }
-
-    .upload-box {
-      background-color: #ddd;
-      height: 150px;
-      border-radius: 8px;
+    footer {
+      background-color: #222;
+      color: white;
+      padding: 20px;
+      text-align: center;
     }
   </style>
 </head>
@@ -84,57 +65,88 @@
 
   <header>
     <h1>Welcome to Sahayi</h1>
-    <input type="text" class="search-bar" placeholder="Search notes or question papers...">
+    <input type="text" placeholder="Search notes, subjects, or papers..." />
   </header>
+
+  <nav>
+    <a href="#explore">Explore</a>
+    <a href="#contribute">Contribute</a>
+    <a href="#contact">Contact</a>
+    <a href="#complaints">Complaints</a>
+  </nav>
 
   <div class="container">
 
-    <!-- EXPLORE SECTION -->
-    <div class="section">
+    <div class="section" id="explore">
       <h2>Explore Notes & Question Papers</h2>
-      <p>Select a scheme, department, and semester to get started.</p>
+      <label for="scheme">Select Scheme:</label>
+      <select id="scheme">
+        <option>2019</option>
+        <option>2024</option>
+      </select>
 
-      <form id="filter-form">
-        <label for="scheme">Select Scheme:</label>
-        <select id="scheme" name="scheme">
-          <option value="2019">2019</option>
-          <option value="2024">2024</option>
-        </select>
+      <label for="department">Select Department:</label>
+      <select id="department">
+        <option>CSE</option>
+        <option>ECE</option>
+        <option>EEE</option>
+        <option>MECH</option>
+        <option>CIVIL</option>
+        <option>IT</option>
+      </select>
 
-        <label for="department">Select Department:</label>
-        <select id="department" name="department">
-          <option value="CSE">CSE</option>
-          <option value="ECE">ECE</option>
-          <option value="EEE">EEE</option>
-          <option value="MECH">MECH</option>
-          <option value="CIVIL">CIVIL</option>
-          <option value="IT">IT</option>
-        </select>
+      <label for="semester">Select Semester:</label>
+      <select id="semester">
+        <option>Semester 1</option>
+        <option>Semester 2</option>
+        <option>Semester 3</option>
+        <option>Semester 4</option>
+        <option>Semester 5</option>
+        <option>Semester 6</option>
+        <option>Semester 7</option>
+        <option>Semester 8</option>
+      </select>
 
-        <label for="semester">Select Semester:</label>
-        <select id="semester" name="semester">
-          <option value="1">Semester 1</option>
-          <option value="2">Semester 2</option>
-          <option value="3">Semester 3</option>
-          <option value="4">Semester 4</option>
-          <option value="5">Semester 5</option>
-          <option value="6">Semester 6</option>
-          <option value="7">Semester 7</option>
-          <option value="8">Semester 8</option>
-        </select>
+      <button onclick="showResources()">Show Notes & Question Papers</button>
 
-        <button type="submit">Show Notes & Question Papers</button>
-      </form>
+      <!-- Maintenance message area -->
+      <div id="resourceMessage" style="margin-top: 20px; color: red; font-weight: bold;"></div>
     </div>
 
-    <!-- CONTRIBUTE SECTION -->
-    <div class="section">
+    <div class="section" id="contribute">
       <h2>Contribute Notes / Question Papers</h2>
       <p>Have notes or question papers to share?</p>
-      <div class="upload-box"></div>
+      <textarea rows="6" placeholder="Paste Drive link here or describe what you're contributing..."></textarea>
+      <button>Submit Contribution</button>
     </div>
-    
+
+    <div class="section" id="contact">
+      <h2>Contact Us</h2>
+      <p>Email: sahayihelp</p>
+      <p>Phone: 000000000</p>
+      <p>Instagram: @sahayi</p>
+    </div>
+
+    <div class="section" id="complaints">
+      <h2>Complaints / Feedback</h2>
+      <input type="text" placeholder="Your Name" />
+      <input type="email" placeholder="Your Email" />
+      <textarea rows="5" placeholder="Write your complaint or feedback here..."></textarea>
+      <button>Submit Feedback</button>
+    </div>
+
   </div>
+
+  <footer>
+    <p>&copy; 2025 Sahayi. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function showResources() {
+      document.getElementById('resourceMessage').innerHTML = 
+        "🚧 Notes & Question Papers are currently under maintenance. Please check back later.";
+    }
+  </script>
 
 </body>
 </html>
